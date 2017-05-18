@@ -1,0 +1,15 @@
+###### On Windows:
+
+## Compile code:
+c:\j2sdk1.4.0_01\bin\javac -d bin -classpath bin\Jama-1.0.1.jar src\javaslam\prob\*.java src\javaslam\util\*.java src\javaslam\tjt\*.java src\javaslam\tjt\graph\*.java src\javaslam\filter\*.java src\javaslam\slam\*.java
+
+## Make documentation:
+c:\j2sdk1.4.0_01\bin\javadoc -overview src\javaslam\overview.html -d doc -classpath .\bin;bin\Jama-1.0.1.jar -link http://math.nist.gov/javanumerics/jama/doc/ -link http://java.sun.com/j2se/1.4/docs/api/ src\javaslam\prob\*.java src\javaslam\util\*.java src\javaslam\tjt\*.java src\javaslam\tjt\graph\*.java src\javaslam\filter\*.java src\javaslam\slam\*.java
+
+##### On Unix:
+
+## Compile code:
+/usr/sww/bin/javac -d bin -classpath bin/Jama-1.0.1.jar src/javaslam/prob/*.java src/javaslam/util/*.java src/javaslam/tjt/*.java src/javaslam/tjt/graph/*.java src/javaslam/filter/*.java src/javaslam/slam/*.java
+
+## Make documentation:
+/usr/sww/bin/javadoc -overview src/javaslam/overview.html -d doc -classpath bin:bin/Jama-1.0.1.jar -link . -link http://math.nist.gov/javanumerics/jama/doc/ -link http://java.sun.com/j2se/1.4/docs/api/ src/javaslam/prob/*.java src/javaslam/util/*.java src/javaslam/tjt/*.java src/javaslam/tjt/graph/*.java src/javaslam/filter/*.java src/javaslam/slam/*.java

@@ -1,0 +1,19 @@
+<html>
+<body>
+Contains data structures and algorithms for filtering approaches to
+the Simultaneous Localization and Mapping (<font
+size="-1">SLAM</font>) problem (with known data association).  This
+package contains three types of <font size="-1">SLAM</font> filters
+for linear-Gaussian environments:
+<ul>
+  <li>the {@link javaslam.slam.KalmanSLAMFilter}, which represents its belief state using a full multivariate Gaussian in the moment parameterization;</li>
+  <li>the {@link javaslam.slam.InformationSLAMFilter}, which represents its belief state using a full multivariate Gaussian in the canonical parameterization; and</li>
+  <li>the {@link javaslam.slam.TJTSLAMFilter} of (Paskin, 2002), which represents its belief state using a thin junction tree.</li>
+</ul>
+In addition, it contains two types of filters for nonlinear <font
+size="-1">SLAM</font> environments:
+<ul>
+  <li>the {@link javaslam.slam.LinearizedSLAMFilter}, which couples one of the linear-Gaussian filters above with a {@link javaslam.filter.Linearization} technique; and</li>
+</ul>
+</body>
+</html>
