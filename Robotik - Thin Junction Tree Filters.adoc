@@ -1,0 +1,54 @@
+[%hardbreaks]
+*SLAM için Thin Junction Tree Filtreleri*
+*__Öğrenciler__*
+Ediz İBER 110202106
+Mertcan YILMAZ 130202056
+Şener KÜÇÜKNANE 120202102
+
+= Kodun Derlenmesi ve Çalıştırılması
+
+1. Öncelikle kod SVN üzerinden indirilir.
+2. Bilgisayara MATLAB kurulumu yapılır.
+3. MATLAB'den Set Path butonuna tıklayarak projedeki trunk\java\bin yolu path olarak eklenir.
+4. Daha sonra projedeki compile.txt dosyasındaki komutlar kullanılarak java dosyaları compile edilir.
+5. MATLAB'den projenin trunk\matlab yoluna gidilir ve yeni bir script açılarak aşağıdaki kodlar yazılır : +
++
+
+(Basit bir iki boyutlu SLAM problemi oluşturulur.) +
+    p = slam2dprob('num-landmarks', 100, 'side', 20, 'shape', 'square'); +
+     +
+    (Az önce oluşturduğumuz probleme bir bakalım.) +
+    slam2dplot(p); +
+    +
+    (Yön bulma işaretleri siyah noktalar olarak gösterilmiştir. Robotun yolu mavi çizgidir. Kırmızı çizgi entegre odometri sinyalidir ve yeşil çizgi entegre kontrol sinyalidir. Buz mavisi noktalar ise robotun konumuna göre yön bulma işaretlerinin ölçümleridir.) +
+     +
+    (Şimdi bu problem için bir kalman filtresi oluşturalım.Robotun durumu bir başlangıç kovaryansı yaratılmalıdır ki bu durumda beş boyutu vardır.) +
+    xC = 1e-5 * eye(5); +
+     +
+    (Şimdi ise başlangıç kovaryansı ve robotun gerçek başlangıç durumunu kullanarak filtreyi oluşturalım.) +
+    f = kalman_slam_filter(p.path(:, 1), xC); +
+    +
+    (Kalman filtresinin çalışmasını izleyelim.) +
+    slam_sim(p, f); +
+
+
+
+[#img-ekran]
+.Proje Yürütme Sonucu
+image::Robotik\images\Ekran.png[ekran,300,200]
+
++
+
+
+= Algoritmaların Kodda Karşılığının Bulunması
+
+1. getJunctionTree() : Bulunulan durumun junction tree gösterimini alır. +
+2. getLandmarkMarginal(int id) : Bir yön bulma işaretçisinin filtrelenmiş marjinal potansiyelinin alır. +
+3. getLandmarkMarginals(int[] ids) : Birden fazla yön bulma işaretçisinin filtrelenmiş marjinal potansiyelini alıp set haline getirir. +
+4. getRobotLandmarkMarginal(int id) : Bir robot ve yön bulma işaretçisinin birleşik filtrelenmiş dağıtımını hesaplar. +
+5. getRobotLandmarkMarginals(int[] ids) : 4. metodun verilerini set haline getirir. +
+6. getRobotMarginal() : Robotun durumunun filtrelenmiş marjinal potansiyelini döndürür. +
+7. measurement(int id, double[] z0, double[][] C, double[][] D, double[][] R, double[] z) : Lineer-Gaussian yön bulma işaretçisi ölçümünü güncelleme işlemini yapar. +
+8. motion(double[] x0, double[][] A, double[][] Q) : Lineer-Gaussian hareket güncellemesi işlemini yapar. +
+9. odometry(double[] y0, double[][] B, double[][] S, double[] y) : Lineer-Gaussian odometri güncelleme işlemini yapar. 
+
